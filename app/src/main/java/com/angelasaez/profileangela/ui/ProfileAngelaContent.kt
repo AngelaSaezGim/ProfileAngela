@@ -16,7 +16,6 @@ fun ProfileAngelaContent(content: @Composable (modifier: Modifier) -> Unit) {
             modifier = Modifier.fillMaxSize()
         ) { innerPadding ->
             content(Modifier.padding(innerPadding))
-
         }
     }
 }
