@@ -15,16 +15,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.angelasaez.profileangela.R
+import com.angelasaez.profileangela.model.User
 
 @Composable
-fun UserHobbies(hobbies : List<String>) {
+fun UserHobbies(user: User) {
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        hobbies.forEach { hobby ->
+        user.userHobbies.forEach { hobby ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

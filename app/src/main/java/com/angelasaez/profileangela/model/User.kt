@@ -1,6 +1,5 @@
 package com.angelasaez.profileangela.model
 
-
 class User(
     var userName: String = "Usuario",
     var userProfilePicture: Int = 0,

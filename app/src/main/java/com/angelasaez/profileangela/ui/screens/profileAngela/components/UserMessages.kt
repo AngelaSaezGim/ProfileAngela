@@ -10,19 +10,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.angelasaez.profileangela.R
+import com.angelasaez.profileangela.model.User
 
 @Composable
-fun UserMessages(numberMessages: Int) {
+fun UserMessages(user: User) {
 
     Image(
         painter = painterResource(id = R.drawable.baseline_email_24),
-        contentDescription = "Hobby icon",
+        contentDescription = "Messages",
         modifier = Modifier
             .size(24.dp)
             .padding(end = 8.dp)
     )
     Text(
-        text = "$numberMessages mensajes",
+        text = "${user.userMessages} mensajes",
         fontSize = 18.sp
     )
 }

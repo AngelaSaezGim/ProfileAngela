@@ -2,7 +2,6 @@ package com.angelasaez.profileangela.ui.screens.profileAngela.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,9 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.angelasaez.profileangela.model.User
 
 @Composable
-fun UserCard(userName: String, profilePicture: Int) {
+fun UserCard(user: User) {
 
     var isFollowing by remember { mutableStateOf(false) }
 
@@ -36,42 +36,50 @@ fun UserCard(userName: String, profilePicture: Int) {
             .padding(20.dp)
             .border(1.dp, Color.Black)
             .padding(20.dp),
-        horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
 
+        //Columna para la foto de perfil (dentro de row)
         Column(
             modifier = Modifier
                 .size(90.dp)
                 .border(1.dp, Color.Black)
         ) {
             Image(
-                painter = painterResource(id = profilePicture),
+                painter = painterResource(id = user.userProfilePicture),
                 contentDescription = "Imagen del usuario",
                 modifier = Modifier.size(100.dp)
             )
         }
-        Spacer(Modifier.width(20.dp));
+        Spacer(Modifier.width(20.dp))
+        //Columna para nombre de usuario (dentro de row)
         Column(
             modifier = Modifier.weight(1f)
         ) {
             Text(
-                text = userName, fontSize = 25.sp
+                text = user.userName, fontSize = 25.sp
             )
         }
+        Spacer(Modifier.width(30.dp))
 
-        Spacer(Modifier.width(30.dp));
-        // Botón de Seguir/Siguiendo
-        FilledTonalButton(
-            onClick = {
-                isFollowing = !isFollowing
-            }, colors = ButtonDefaults.filledTonalButtonColors(
-                containerColor = if (isFollowing) Color.Gray else Color.LightGray // Cambia el color según el estado
-            )
+        // Columna para botón de seguir (dentro de Row)
+        Column(
+            modifier = Modifier.weight(1.4f)
         ) {
-            Text(
-                text = if (isFollowing) "Siguiendo" else "Seguir", color = Color.White
-            )
+            //Uso boton sacado de Material Design 3
+            FilledTonalButton(
+                onClick = {
+                    isFollowing = !isFollowing
+                }
+                ,colors = ButtonDefaults.filledTonalButtonColors(
+                    containerColor = if (isFollowing) Color.Gray else Color.LightGray // Cambia el color según el estado
+                )
+            ) {
+                Text(
+                    text = if (isFollowing) "Siguiendo" else "Seguir",
+                    color = Color.White
+                )
+            }
         }
 
     }

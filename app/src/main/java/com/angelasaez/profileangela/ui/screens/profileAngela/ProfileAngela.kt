@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.angelasaez.profileangela.R
 import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserCard
@@ -14,14 +14,15 @@ import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserHobb
 import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserMessages
 import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserPictures
 import com.angelasaez.profileangela.model.User
+import com.angelasaez.profileangela.ui.screens.common.ProfileFooter
 
 @Composable
 fun ProfileAngela(modifier: Modifier) {
 
-    val user by rememberSaveable {
+    val user by remember {
         mutableStateOf(
             User(
-                "Ángela Sáez",
+                "Ángela",
                 R.drawable.foto_perfil,
                 listOf("Leer", "Escribir", "Fotografía", "Cocinar", "Viajar"),
                 listOf(R.drawable.foto1, R.drawable.foto2),
@@ -39,20 +40,14 @@ fun ProfileAngela(modifier: Modifier) {
         verticalArrangement = Arrangement.Top,
     ) {
 
-        UserCard(
-            userName = user.userName, profilePicture = user.userProfilePicture
-        )
+        UserCard(user)
 
-        UserHobbies(hobbies = user.userHobbies)
+        UserHobbies(user)
 
-        UserPictures(
-            picture1 = user.userImages[0], picture2 = user.userImages[1]
-        )
+        UserPictures(user)
 
-        UserMessages(
-            numberMessages = user.userMessages
-        )
+        UserMessages(user)
 
-
+        ProfileFooter()
     }
 }

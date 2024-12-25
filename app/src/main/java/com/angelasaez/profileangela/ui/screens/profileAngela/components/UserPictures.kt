@@ -10,24 +10,29 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.angelasaez.profileangela.model.User
 
 @Composable
-fun UserPictures(picture1: Int, picture2: Int) { //Only 2 pictures
+fun UserPictures(user: User) { //2 pictures
 
-    var isLiked1 by remember { mutableStateOf(false) }
-    var isLiked2 by remember { mutableStateOf(false) }
+    var isLiked1 by rememberSaveable { mutableStateOf(false) }
+    var isLiked2 by  rememberSaveable { mutableStateOf(false) }
 
     Row(
         modifier = Modifier
@@ -42,9 +47,19 @@ fun UserPictures(picture1: Int, picture2: Int) { //Only 2 pictures
             modifier = Modifier
                 .border(1.dp, Color.Black)
                 .padding(10.dp)
-        ) {
+        )
+        {
+
+            // Icono de like (corazón)
+            Icon(
+                imageVector = if (isLiked1) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                contentDescription = "Like Icon",
+                modifier = Modifier.size(30.dp),
+                tint = if (isLiked1) Color.Red else Color.Gray
+            )
+
             Image(
-                painter = painterResource(id = picture1),
+                painter = painterResource(id = user.userImages[0]),
                 contentDescription = "Imagen 1",
                 modifier = Modifier.size(120.dp)
             )
@@ -56,16 +71,16 @@ fun UserPictures(picture1: Int, picture2: Int) { //Only 2 pictures
                 },
                 modifier = Modifier.padding(top = 8.dp),
                 colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = if (isLiked1) Color.Gray else Color.LightGray
+                    containerColor = if (isLiked1) Color.LightGray else Color.Gray
                 )
             ) {
                 Text(
-                    text = if (isLiked1) "Me gusta" else "No me gusta", color = Color.White
+                    text = if (isLiked1) "No me gusta" else "Me gusta", color = Color.White
                 )
             }
         }
 
-        Spacer(Modifier.width(30.dp));
+        Spacer(Modifier.width(30.dp))
 
         Column(
             modifier = Modifier
@@ -73,8 +88,8 @@ fun UserPictures(picture1: Int, picture2: Int) { //Only 2 pictures
                 .padding(10.dp)
         ) {
             Image(
-                painter = painterResource(id = picture1),
-                contentDescription = "Imagen 1",
+                painter = painterResource(id = user.userImages[1]),
+                contentDescription = "Imagen 2",
                 modifier = Modifier.size(120.dp)
             )
 
@@ -85,11 +100,11 @@ fun UserPictures(picture1: Int, picture2: Int) { //Only 2 pictures
                 },
                 modifier = Modifier.padding(top = 8.dp),
                 colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = if (isLiked2) Color.Gray else Color.LightGray
+                    containerColor = if (isLiked2) Color.LightGray else Color.Gray
                 )
             ) {
                 Text(
-                    text = if (isLiked2) "Me gusta" else "No me gusta", color = Color.White
+                    text = if (isLiked2) "No me gusta" else "Me gusta", color = Color.White
                 )
             }
         }
