@@ -13,38 +13,45 @@ import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserCard
 import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserHobbies
 import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserMessages
 import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserPictures
+import com.angelasaez.profileangela.model.User
 
 @Composable
 fun ProfileAngela(modifier: Modifier) {
 
-    val userName by rememberSaveable { mutableStateOf("Ángela") }
-    val profilePicture = R.drawable.foto_perfil
+    val user by rememberSaveable {
+        mutableStateOf(
+            User(
+                "Ángela Sáez",
+                R.drawable.foto_perfil,
+                listOf("Leer", "Escribir", "Fotografía", "Cocinar", "Viajar"),
+                listOf(R.drawable.foto1, R.drawable.foto2),
+                5
+            )
+        )
+    }
 
 
     //Columna principal applicación
-    Column (
-        modifier = Modifier.fillMaxSize().then(modifier),
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .then(modifier),
         verticalArrangement = Arrangement.Top,
-    )
-    {
+    ) {
 
         UserCard(
-            userName = userName,
-            profilePicture = profilePicture
+            userName = user.userName, profilePicture = user.userProfilePicture
         )
 
-        val hobbies = listOf("Leer", "Escribir", "Fotografía", "Cocinar", "Viajar")
-        UserHobbies(hobbies=hobbies)
+        UserHobbies(hobbies = user.userHobbies)
 
         UserPictures(
-            picture1 = profilePicture,
-            picture2 = profilePicture
+            picture1 = user.userImages[0], picture2 = user.userImages[1]
         )
 
         UserMessages(
-            numberMessages = 5
+            numberMessages = user.userMessages
         )
-
 
 
     }
