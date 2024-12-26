@@ -34,6 +34,7 @@ fun UserPictures(user: User) { //2 pictures
     var isLiked1 by rememberSaveable { mutableStateOf(false) }
     var isLiked2 by  rememberSaveable { mutableStateOf(false) }
 
+    // CAMBIAR USAR ASYNCIMAGES PARA LAS IMAGENES
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -61,7 +62,7 @@ fun UserPictures(user: User) { //2 pictures
             Image(
                 painter = painterResource(id = user.userImages[0]),
                 contentDescription = "Imagen 1",
-                modifier = Modifier.size(120.dp)
+                modifier = Modifier.size(130.dp)
             )
 
             // Botón para like
@@ -69,7 +70,9 @@ fun UserPictures(user: User) { //2 pictures
                 onClick = {
                     isLiked1 = !isLiked1
                 },
-                modifier = Modifier.padding(top = 8.dp),
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .width(130.dp),
                 colors = ButtonDefaults.filledTonalButtonColors(
                     containerColor = if (isLiked1) Color.LightGray else Color.Gray
                 )
@@ -80,17 +83,26 @@ fun UserPictures(user: User) { //2 pictures
             }
         }
 
-        Spacer(Modifier.width(30.dp))
+        Spacer(Modifier.width(20.dp))
 
         Column(
             modifier = Modifier
                 .border(1.dp, Color.Black)
                 .padding(10.dp)
         ) {
+
+            // Icono de like (corazón)
+            Icon(
+                imageVector = if (isLiked2) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                contentDescription = "Like Icon",
+                modifier = Modifier.size(30.dp),
+                tint = if (isLiked2) Color.Red else Color.Gray
+            )
+
             Image(
                 painter = painterResource(id = user.userImages[1]),
                 contentDescription = "Imagen 2",
-                modifier = Modifier.size(120.dp)
+                modifier = Modifier.size(130.dp)
             )
 
             // Botón para like
@@ -98,7 +110,9 @@ fun UserPictures(user: User) { //2 pictures
                 onClick = {
                     isLiked2 = !isLiked2
                 },
-                modifier = Modifier.padding(top = 8.dp),
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .width(130.dp),
                 colors = ButtonDefaults.filledTonalButtonColors(
                     containerColor = if (isLiked2) Color.LightGray else Color.Gray
                 )

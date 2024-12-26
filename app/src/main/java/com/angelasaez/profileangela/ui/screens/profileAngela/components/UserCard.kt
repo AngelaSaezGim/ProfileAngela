@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Text
@@ -20,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -43,12 +45,14 @@ fun UserCard(user: User) {
         Column(
             modifier = Modifier
                 .size(90.dp)
-                .border(1.dp, Color.Black)
         ) {
             Image(
                 painter = painterResource(id = user.userProfilePicture),
                 contentDescription = "Imagen del usuario",
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .border(1.dp,Color.Black,CircleShape)
+                    .size(100.dp),
             )
         }
         Spacer(Modifier.width(20.dp))

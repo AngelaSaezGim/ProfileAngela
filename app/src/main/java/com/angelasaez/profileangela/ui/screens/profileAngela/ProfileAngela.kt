@@ -24,7 +24,7 @@ fun ProfileAngela(modifier: Modifier) {
             User(
                 "Ángela",
                 R.drawable.foto_perfil,
-                listOf("Leer", "Escribir", "Fotografía", "Cocinar", "Viajar"),
+                listOf("Leer", "Cine", "Videojuegos", "Música", "Viajar"),
                 listOf(R.drawable.foto1, R.drawable.foto2),
                 5
             )
