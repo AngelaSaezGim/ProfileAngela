@@ -3,6 +3,8 @@ package com.angelasaez.profileangela.ui.screens.profileAngela
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,10 +16,12 @@ import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserHobb
 import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserMessages
 import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserPictures
 import com.angelasaez.profileangela.model.User
-import com.angelasaez.profileangela.ui.screens.common.ProfileFooter
 
 @Composable
 fun ProfileAngela(modifier: Modifier) {
+
+    val urlPicture1 = "https://barnimages.com/wp-content/uploads/2024/11/20241127-barnimages-1-960x640.jpg"
+    val urlPicture2 = "https://barnimages.com/wp-content/uploads/2024/12/20241205-barnimages-4-960x640.jpg"
 
     val user by remember {
         mutableStateOf(
@@ -25,17 +29,20 @@ fun ProfileAngela(modifier: Modifier) {
                 "Ángela",
                 R.drawable.foto_perfil,
                 listOf("Leer", "Cine", "Videojuegos", "Música", "Viajar"),
-                listOf(R.drawable.foto1, R.drawable.foto2),
+                listOf(urlPicture1, urlPicture2),
                 5
             )
         )
     }
 
+    //Scroll vertical aplicación
+    val scrollState = rememberScrollState()
 
     //Columna principal applicación
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(scrollState)
             .then(modifier),
         verticalArrangement = Arrangement.Top,
     ) {
@@ -47,7 +54,5 @@ fun ProfileAngela(modifier: Modifier) {
         UserPictures(user)
 
         UserMessages(user)
-
-        ProfileFooter()
     }
 }

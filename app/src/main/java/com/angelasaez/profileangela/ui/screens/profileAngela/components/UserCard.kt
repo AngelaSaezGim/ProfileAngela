@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.angelasaez.profileangela.model.User
+import com.angelasaez.profileangela.ui.screens.common.CustomSpacer
 
 @Composable
 fun UserCard(user: User) {
@@ -55,7 +56,7 @@ fun UserCard(user: User) {
                     .size(100.dp),
             )
         }
-        Spacer(Modifier.width(20.dp))
+        CustomSpacer(width = 20)
         //Columna para nombre de usuario (dentro de row)
         Column(
             modifier = Modifier.weight(1f)
@@ -64,7 +65,7 @@ fun UserCard(user: User) {
                 text = user.userName, fontSize = 25.sp
             )
         }
-        Spacer(Modifier.width(30.dp))
+        CustomSpacer(width = 30)
 
         // Columna para botón de seguir (dentro de Row)
         Column(

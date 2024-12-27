@@ -1,15 +1,14 @@
 package com.angelasaez.profileangela.ui.screens.profileAngela.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -23,10 +22,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.angelasaez.profileangela.model.User
+import com.angelasaez.profileangela.ui.screens.common.CustomSpacer
 
 @Composable
 fun UserPictures(user: User) { //2 pictures
@@ -34,7 +38,6 @@ fun UserPictures(user: User) { //2 pictures
     var isLiked1 by rememberSaveable { mutableStateOf(false) }
     var isLiked2 by  rememberSaveable { mutableStateOf(false) }
 
-    // CAMBIAR USAR ASYNCIMAGES PARA LAS IMAGENES
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -59,11 +62,19 @@ fun UserPictures(user: User) { //2 pictures
                 tint = if (isLiked1) Color.Red else Color.Gray
             )
 
-            Image(
-                painter = painterResource(id = user.userImages[0]),
+            AsyncImage(
+                model = ImageRequest
+                    .Builder(LocalContext.current)
+                    .data(user.userImages[0]) // URL
+                    .crossfade(3000)
+                    .build(),
                 contentDescription = "Imagen 1",
-                modifier = Modifier.size(130.dp)
+                modifier = Modifier
+                    .size(130.dp)
+                    .clip(RoundedCornerShape(40.dp))
             )
+
+            CustomSpacer(height = 6)
 
             // Botón para like
             FilledTonalButton(
@@ -83,7 +94,7 @@ fun UserPictures(user: User) { //2 pictures
             }
         }
 
-        Spacer(Modifier.width(20.dp))
+        CustomSpacer(width = 20)
 
         Column(
             modifier = Modifier
@@ -99,11 +110,19 @@ fun UserPictures(user: User) { //2 pictures
                 tint = if (isLiked2) Color.Red else Color.Gray
             )
 
-            Image(
-                painter = painterResource(id = user.userImages[1]),
+            AsyncImage(
+                model = ImageRequest
+                    .Builder(LocalContext.current)
+                    .data(user.userImages[1]) // URL
+                    .crossfade(3000)
+                    .build(),
                 contentDescription = "Imagen 2",
-                modifier = Modifier.size(130.dp)
+                modifier = Modifier
+                    .size(130.dp)
+                    .clip(RoundedCornerShape(40.dp))
             )
+
+            CustomSpacer(height = 6)
 
             // Botón para like
             FilledTonalButton(
