@@ -20,8 +20,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.angelasaez.profileangela.R
 import com.angelasaez.profileangela.model.User
 import com.angelasaez.profileangela.ui.screens.common.CustomSpacer
 
@@ -55,7 +57,7 @@ fun UserMessages(user: User) {
             Icon(
                 imageVector = Icons.Default.Mail,
                 contentDescription = "Messages",
-                tint = Color(0xFF691C88),
+                tint = colorResource(id = R.color.icon_color),
                 modifier = Modifier.size(50.dp) // Tamaño del icono
             )
         }
@@ -68,7 +70,7 @@ fun UserMessages(user: User) {
                 .size(90.dp, 40.dp)
                 .padding(top = 6.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF512E5F),
+                containerColor = colorResource(id = R.color.button_on_color1),
                 contentColor = Color.White
             )
         ) {

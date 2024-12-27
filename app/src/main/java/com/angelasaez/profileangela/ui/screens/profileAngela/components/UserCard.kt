@@ -22,8 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.angelasaez.profileangela.R
 import com.angelasaez.profileangela.model.User
 import com.angelasaez.profileangela.ui.screens.common.CustomSpacer
 
@@ -32,8 +34,8 @@ fun UserCard(user: User) {
 
     var isFollowing by remember { mutableStateOf(false) }
 
-    val buttonOnColor1 = Color(0xFF512E5F)
-    val buttonOffColor1 = Color(0xFF9B59B6)
+    val buttonOnColor1 = colorResource(id = R.color.button_on_color1)
+    val buttonOffColor1 = colorResource(id = R.color.button_off_color1)
 
     Row(
         modifier = Modifier
@@ -79,8 +81,6 @@ fun UserCard(user: User) {
                 onClick = {
                     isFollowing = !isFollowing
                 }
-                //Color botones sin pulsar = 0xFF512E5F
-                //Color botones pulsado = 0xFF9B59B6
                 ,colors = ButtonDefaults.filledTonalButtonColors(
                     containerColor = if (isFollowing) buttonOnColor1 else buttonOffColor1 // Cambia el color según el estado
                 )

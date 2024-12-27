@@ -25,6 +25,8 @@ import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.filled.VideogameAsset
 import androidx.compose.material3.Icon
 import androidx.compose.material3.VerticalDivider
+import androidx.compose.ui.res.colorResource
+import com.angelasaez.profileangela.R
 
 @Composable
 fun UserHobbies(user: User) {
@@ -40,12 +42,10 @@ fun UserHobbies(user: User) {
     //Icono predeterminado si asignamos hobbies sin iconos asociados
     val defaultIcon = Icons.Default.AddCircle
 
-    val colorIcon = Color(0xFF691C88)
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(25.dp)
     ) {
         Text(
             text = "Hobbies de ${user.userName}",
@@ -74,8 +74,7 @@ fun UserHobbies(user: User) {
                     Icon(
                         imageVector = icon,
                         contentDescription = "$hobby icon",
-                        //Color iconos = 0xFF691C88
-                        tint = colorIcon,
+                        tint = colorResource(id = R.color.icon_color),
                         modifier = Modifier.size(24.dp).padding(end = 8.dp)
                     )
                     // Uso vertical Divider - separar iconos/Texto
