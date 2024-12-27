@@ -4,6 +4,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
@@ -23,6 +24,7 @@ import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.filled.VideogameAsset
 import androidx.compose.material3.Icon
+import androidx.compose.material3.VerticalDivider
 
 @Composable
 fun UserHobbies(user: User) {
@@ -37,6 +39,8 @@ fun UserHobbies(user: User) {
     )
     //Icono predeterminado si asignamos hobbies sin iconos asociados
     val defaultIcon = Icons.Default.AddCircle
+
+    val colorIcon = Color(0xFF691C88)
 
     Column(
         modifier = Modifier
@@ -64,14 +68,23 @@ fun UserHobbies(user: User) {
                         .border(1.dp, Color.Black)
                         .padding(10.dp)
                 ) {
-                    // Obtener el icono del mapa, o usar el predeterminado
                     //Aqui coloco cada icono - HashMap hobbyIcons[hobby]
+                    // Obtener el icono del mapa, o usar el predeterminado
                     val icon = hobbyIcons[hobby] ?: defaultIcon
                     Icon(
                         imageVector = icon,
                         contentDescription = "$hobby icon",
-                        tint = Color.Gray,
+                        //Color iconos = 0xFF691C88
+                        tint = colorIcon,
                         modifier = Modifier.size(24.dp).padding(end = 8.dp)
+                    )
+                    // Uso vertical Divider - separar iconos/Texto
+                    VerticalDivider(
+                        modifier = Modifier
+                            .padding(horizontal = 10.dp)
+                            .height(24.dp),
+                        color = Color.Gray,
+                        thickness = 1.dp
                     )
                     Text(
                         text = hobby,

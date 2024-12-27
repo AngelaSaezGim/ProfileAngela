@@ -35,6 +35,8 @@ import com.angelasaez.profileangela.ui.screens.common.CustomSpacer
 @Composable
 fun UserPictures(user: User) { //2 pictures
 
+    val iconHeartUnfilled = Color(0xFF4B3359)
+
     var isLiked1 by rememberSaveable { mutableStateOf(false) }
     var isLiked2 by  rememberSaveable { mutableStateOf(false) }
 
@@ -59,7 +61,7 @@ fun UserPictures(user: User) { //2 pictures
                 imageVector = if (isLiked1) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                 contentDescription = "Like Icon",
                 modifier = Modifier.size(30.dp),
-                tint = if (isLiked1) Color.Red else Color.Gray
+                tint = if (isLiked1) Color.Red else iconHeartUnfilled
             )
 
             AsyncImage(
@@ -85,7 +87,7 @@ fun UserPictures(user: User) { //2 pictures
                     .padding(top = 8.dp)
                     .width(130.dp),
                 colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = if (isLiked1) Color.LightGray else Color.Gray
+                    containerColor = if (isLiked1)  Color(0x68BC8DE3) else Color(0xFF4B3359)
                 )
             ) {
                 Text(
@@ -107,7 +109,7 @@ fun UserPictures(user: User) { //2 pictures
                 imageVector = if (isLiked2) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                 contentDescription = "Like Icon",
                 modifier = Modifier.size(30.dp),
-                tint = if (isLiked2) Color.Red else Color.Gray
+                tint = if (isLiked2) Color.Red else iconHeartUnfilled
             )
 
             AsyncImage(
@@ -133,7 +135,7 @@ fun UserPictures(user: User) { //2 pictures
                     .padding(top = 8.dp)
                     .width(130.dp),
                 colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = if (isLiked2) Color.LightGray else Color.Gray
+                    containerColor = if (isLiked2) Color(0x68BC8DE3) else Color(0xFF4B3359)
                 )
             ) {
                 Text(

@@ -4,11 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
@@ -23,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.angelasaez.profileangela.model.User
@@ -32,6 +31,9 @@ import com.angelasaez.profileangela.ui.screens.common.CustomSpacer
 fun UserCard(user: User) {
 
     var isFollowing by remember { mutableStateOf(false) }
+
+    val buttonOnColor1 = Color(0xFF512E5F)
+    val buttonOffColor1 = Color(0xFF9B59B6)
 
     Row(
         modifier = Modifier
@@ -53,7 +55,8 @@ fun UserCard(user: User) {
                 modifier = Modifier
                     .clip(CircleShape)
                     .border(1.dp,Color.Black,CircleShape)
-                    .size(100.dp),
+                    .size(85.dp),
+                contentScale = ContentScale.Crop
             )
         }
         CustomSpacer(width = 20)
@@ -76,8 +79,10 @@ fun UserCard(user: User) {
                 onClick = {
                     isFollowing = !isFollowing
                 }
+                //Color botones sin pulsar = 0xFF512E5F
+                //Color botones pulsado = 0xFF9B59B6
                 ,colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = if (isFollowing) Color.Gray else Color.LightGray // Cambia el color según el estado
+                    containerColor = if (isFollowing) buttonOnColor1 else buttonOffColor1 // Cambia el color según el estado
                 )
             ) {
                 Text(

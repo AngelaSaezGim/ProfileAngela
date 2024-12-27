@@ -1,5 +1,6 @@
 package com.angelasaez.profileangela.ui.screens.profileAngela
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +11,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import com.angelasaez.profileangela.R
 import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserCard
 import com.angelasaez.profileangela.ui.screens.profileAngela.components.UserHobbies
@@ -42,6 +45,14 @@ fun ProfileAngela(modifier: Modifier) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(
+                Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFFF5EEF8),
+                        Color(0xFF9B59B6),
+                    )
+                )
+            )
             .verticalScroll(scrollState)
             .then(modifier),
         verticalArrangement = Arrangement.Top,

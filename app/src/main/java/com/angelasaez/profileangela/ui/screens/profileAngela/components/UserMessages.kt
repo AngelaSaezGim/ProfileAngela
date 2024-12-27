@@ -2,7 +2,6 @@ package com.angelasaez.profileangela.ui.screens.profileAngela.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -32,8 +31,8 @@ fun UserMessages(user: User) {
     val messageCount = remember { mutableIntStateOf(user.userMessages) }
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally, // Centra todo horizontalmente
-        verticalArrangement = Arrangement.Center,  // Centra los elementos verticalmente
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxWidth()
             .padding(15.dp)
@@ -56,26 +55,27 @@ fun UserMessages(user: User) {
             Icon(
                 imageVector = Icons.Default.Mail,
                 contentDescription = "Messages",
-                tint = Color.Gray,
-                modifier = Modifier.size(40.dp) // Tamaño del icono
+                tint = Color(0xFF691C88),
+                modifier = Modifier.size(50.dp) // Tamaño del icono
             )
         }
 
-       CustomSpacer(width = 50)
+       CustomSpacer(width = 10)
 
         Button(
             onClick = { messageCount.intValue += 1 },
             modifier = Modifier
-                .padding(top = 16.dp),
+                .size(90.dp, 40.dp)
+                .padding(top = 6.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Gray,
+                containerColor = Color(0xFF512E5F),
                 contentColor = Color.White
             )
         ) {
             Icon(
                 imageVector = Icons.Default.Add,
                 contentDescription = "+1 mensaje",
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(32.dp)
             )
         }
     }
